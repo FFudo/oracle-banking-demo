@@ -11,18 +11,25 @@ ACCEPT app_pwd CHAR PROMPT 'BANK_APP password: ' HIDE
 
 SPOOL /tmp/install.log
 
-PROMPT === Step 0: create user ===
-CONNECT system/"&sys_pwd"@//localhost/FREEPDB1
+pro    === Step 0: create user ===
+CONNECT system/"&sys_pwd"@localhost:1521/FREEPDB1
+
 @@00_setup_user.sql "&app_pwd"
 
-PROMPT === Connect as BANK_APP ===
-CONNECT bank_app/"&app_pwd"@//localhost/FREEPDB1
+pro    === Connect as BANK_APP ===
+CONNECT bank_app/"&app_pwd"@localhost:1521/FREEPDB1
+
 BEGIN
-  IF USER != 'BANK_APP' THEN
-    RAISE_APPLICATION_ERROR(-20000, 'Expected BANK_APP, but connected as ' || USER);
-  END IF;
+   IF user != 'BANK_APP' THEN
+      raise_application_error(
+         -20000,
+         'Expected BANK_APP, but connected as ' || user
+      );
+   END IF;
 END;
 /
+
+@@01_schema.sql
 
 UNDEFINE sys_pwd app_pwd
 
