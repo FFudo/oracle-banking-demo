@@ -3,7 +3,7 @@
 -- (user, tables, sample data, package, triggers, views)
 -- Usage   : docker compose exec oracle sqlplus /nolog @/workspace/install.sql
 
-WHENEVER SQLERROR EXIT FAILURE
+WHENEVER SQLERROR EXIT FAILURE ROLLBACK
 SET VERIFY OFF
 
 ACCEPT sys_pwd CHAR PROMPT 'SYSTEM password: ' HIDE
@@ -30,6 +30,7 @@ END;
 /
 
 @@01_schema.sql
+@@02_sample_data.sql
 
 UNDEFINE sys_pwd app_pwd
 
