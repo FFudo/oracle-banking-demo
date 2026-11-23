@@ -10,7 +10,7 @@ It runs on Oracle Database Free (23ai/26ai) in Docker.
 | Docker setup              | Oracle Database Free in Docker, passwords in `.env`                      | ✅     |
 | App user                  | dedicated schema user, least-privilege grants, tablespace quota          | ✅     |
 | Schema with constraints   | identity columns, PK/FK, CHECK, indexes, comments                        | ✅     |
-| Sample data               | set-based `INSERT … SELECT`, reproducible random data with `DBMS_RANDOM` | 🚧     |
+| Sample data               | set-based `INSERT … SELECT`, reproducible random data with `DBMS_RANDOM` | ✅     |
 | Account package           | package spec and body, custom errors with `RAISE_APPLICATION_ERROR`      | 🚧     |
 | Transfer between accounts | `SELECT … FOR UPDATE`, deadlock-free lock ordering, savepoints           | 🚧     |
 | Audit log                 | row-level trigger with `:OLD` / `:NEW`                                   | 🚧     |
